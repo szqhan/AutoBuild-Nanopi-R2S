@@ -50,9 +50,10 @@ jobs:
         #cd openwrt && make defconfig
         
     - name : package
+      working-directory: ./openwrt
       run: |
         #find openwrt/ -name "*.config" | xargs -i zip -r {}.zip {}
-        cp openwrt/*.config openwrt/bin
+        cp .config openwrt/bin
         #find openwrt/ -name "*.zip*" | xargs -i mv -f {} ./artifact/
                 
     - name : Upload artifact
