@@ -51,8 +51,9 @@ jobs:
         
     - name : package
       run: |
-        tar zcvf openwrt/bin/1.tar.gz openwrt/.config
-        
+        find openwrt/ -name "*.config" | xargs -i zip -r {}.zip {}
+        find openwrt/ -name "*.zip*" | xargs -i mv -f {} ./artifact/
+                
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
