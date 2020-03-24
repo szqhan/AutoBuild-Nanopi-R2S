@@ -53,7 +53,7 @@ jobs:
       working-directory: ./openwrt
       run: |
         #find openwrt/ -name "*.config" | xargs -i zip -r {}.zip {}
-        cp .config openwrt/bin
+        cp .config bin
         #find openwrt/ -name "*.zip*" | xargs -i mv -f {} ./artifact/
                 
     - name : Upload artifact
