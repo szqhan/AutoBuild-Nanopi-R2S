@@ -38,8 +38,8 @@ jobs:
       working-directory: ./openwrt
       run: |
         echo src-git lienol https://github.com/Lienol/openwrt-package >> feeds.conf.default
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
+        #./scripts/feeds update -a
+        #./scripts/feeds install -a
         
     - name: Configuration Customization - Build_x86_64
       env:
