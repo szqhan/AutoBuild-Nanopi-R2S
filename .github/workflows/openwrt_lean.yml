@@ -28,9 +28,10 @@ jobs:
     - name: Clone source code
       run: |
         git clone https://github.com/openwrt/openwrt.git
-        git checkout v19.07.2
         git clone https://github.com/coolsnowwolf/lede.git
-        cd openwrt/package
+        cd openwrt
+        git checkout v19.07.2
+        cd package
         ln -s ../../lede/package/lean/ lean
         
     - name: Update & Install feeds
