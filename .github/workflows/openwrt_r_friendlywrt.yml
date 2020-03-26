@@ -47,9 +47,9 @@ jobs:
         #ln -s ../../lede/package/lean/ lean
         
     - name: Update & Install feeds
-      working-directory: ./friendlywrt-h5/friedlywrt
       run: |
         #echo src-git lienol https://github.com/Lienol/openwrt-package >> feeds.conf.default
+        cd friendlywrt-h5/friedlywrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
@@ -62,18 +62,18 @@ jobs:
         cd friendlywrt-h5/friedlywrt && make defconfig
         
     - name: Download package
-      working-directory: ./friendlywrt-h5/friedlywrt
       run: |
+        cd friendlywrt-h5/friedlywrt
         make download -j$(nproc)
         
     - name: Build firmware
-      working-directory: ./friendlywrt-h5/friedlywrt
       run: |
         #echo -e "$(nproc) thread build."
+        cd friendlywrt-h5/friedlywrt
         make -j1 V=s
 
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt
+        name: OpenWrt_friendlywrt
         path: friendlywrt-h5/friedlywrt/bin
