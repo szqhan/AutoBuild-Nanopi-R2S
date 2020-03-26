@@ -49,7 +49,7 @@ jobs:
     - name: Update & Install feeds
       run: |
         #echo src-git lienol https://github.com/Lienol/openwrt-package >> feeds.conf.default
-        cd friendlywrt-h5/friedlywrt
+        cd friendlywrt-h5/friendlywrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
@@ -57,23 +57,23 @@ jobs:
       env:
         CONFIG_FILE: '2020-03-24.config'
       run: |
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE friendlywrt-h5/friedlywrt/.config
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE friendlywrt-h5/friendlywrt/.config
         #chmod +x ./customize.sh && ./customize.sh
-        cd friendlywrt-h5/friedlywrt && make defconfig
+        cd friendlywrt-h5/friendlywrt && make defconfig
         
     - name: Download package
       run: |
-        cd friendlywrt-h5/friedlywrt
+        cd friendlywrt-h5/friendlywrt
         make download -j$(nproc)
         
     - name: Build firmware
       run: |
         #echo -e "$(nproc) thread build."
-        cd friendlywrt-h5/friedlywrt
+        cd friendlywrt-h5/friendlywrt
         make -j1 V=s
 
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
         name: OpenWrt_friendlywrt
-        path: friendlywrt-h5/friedlywrt/bin
+        path: friendlywrt-h5/friendlywrt/bin
