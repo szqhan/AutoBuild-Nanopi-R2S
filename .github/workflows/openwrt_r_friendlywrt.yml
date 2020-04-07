@@ -4,9 +4,9 @@ on:
   release:
     types: [published]
 
-  #push:
-  #  branches: 
-  #    - master
+  push:
+    branches: 
+      - master
 
 jobs:
   build:
@@ -36,19 +36,20 @@ jobs:
         repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master -m h5.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
         repo sync -c --no-clone-bundle -j8
         
-    - name: Clone source code
-      run: |
-        cd friendlywrt-h5 && rm -rf friendlywrt
-        git clone https://github.com/openwrt/openwrt.git && mv openwrt friendlywrt
-        #git clone https://github.com/coolsnowwolf/lede.git
-        cd friendlywrt
-        git checkout v19.07.2
-        #cd package
-        #ln -s ../../lede/package/lean/ lean
+    #- name: Clone source code
+    #  run: |
+    #    cd friendlywrt-h5 && rm -rf friendlywrt
+    #    git clone https://github.com/openwrt/openwrt.git && mv openwrt friendlywrt
+    #    #git clone https://github.com/coolsnowwolf/lede.git
+    #    cd friendlywrt
+    #    git checkout v19.07.2
+    #    #cd package
+    #    #ln -s ../../lede/package/lean/ lean
         
     - name: Update & Install feeds
       run: |
         #echo src-git lienol https://github.com/Lienol/openwrt-package >> feeds.conf.default
+        cp openwrt_feeds friendlywrt-h5/friendlywrt/feeds.conf.default
         cd friendlywrt-h5/friendlywrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
