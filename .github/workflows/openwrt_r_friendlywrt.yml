@@ -21,7 +21,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo -E apt-get update
-        #sudo apt install subversion g++ zlib1g-dev build-essential git python python3 python3-distutils libncurses5-dev gawk gettext \
+        sudo apt install subversion g++ zlib1g-dev build-essential git python python3 python3-distutils libncurses5-dev gawk gettext \
                  unzip file libssl-dev wget libelf-dev ecj fastjar java-propose-classpath libncursesw5-dev
         wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
         #sudo -E apt-get -y autoremove --purge
