@@ -4,9 +4,9 @@ on:
   release:
     types: [published]
 
-  #push:
-  #  branches: 
-  #    - master
+  push:
+    branches: 
+      - master
 
 jobs:
   build:
@@ -21,13 +21,15 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo -E apt-get update
-        sudo apt install subversion g++ zlib1g-dev build-essential git python python3 python3-distutils libncurses5-dev gawk gettext \
-                 unzip file libssl-dev wget libelf-dev ecj fastjar java-propose-classpath libncursesw5-dev
+        sudo apt-get -y install bc build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler
         wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
         git clone https://github.com/friendlyarm/repo
         sudo cp repo/repo /usr/bin/
+        
+      #  sudo apt install subversion g++ zlib1g-dev build-essential git python python3 python3-distutils libncurses5-dev gawk gettext \
+      #           unzip file libssl-dev wget libelf-dev ecj fastjar java-propose-classpath libncursesw5-dev
 
     - name: Download Source
       run: |
